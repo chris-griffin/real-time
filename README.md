@@ -3,11 +3,11 @@ Please visit http://chris-griffin.github.io/real-time for more information.
 
 ## Usage
 
-This repository allows you to run a countdown clock display for the NYC Subway from the comfort of your own apartment, home or office. You can configure it to display the times for the exact train(s)/station(s) you desire. It runs via RGB LED panels, the Raspberry Pi 2, @hzeller's great [RGB LED library](https://github.com/hzeller/rpi-rgb-led-matrix), and the MTA's real time API. Currently, the MTA currently only diseminates real-time data for the "A" division trains which include the 1, 2, 3, 4, 5, 6 and L trains, and as a result are the only lines supported. For avoidance of doubt, this repository is in no way connected, endorsed, or licensed by the Metropolitan Transportation Authority ("MTA"). 
+This repository allows you to run a countdown clock display for the NYC Subway from the comfort of your own apartment, home or office. You can configure it to display the times for the exact train(s)/station(s) you desire. It runs via RGB LED panels, the Raspberry Pi 2, @hzeller's great [RGB LED library](https://github.com/hzeller/rpi-rgb-led-matrix), and the MTA's real time API. Currently, the MTA currently only disseminates real-time data for the "A" division trains which include the 1, 2, 3, 4, 5, 6 and L trains, and as a result are the only lines supported. For avoidance of doubt, this repository is in no way connected, endorsed, or licensed by the Metropolitan Transportation Authority ("MTA"). 
 
-**Please note that these panels do not have built-in PWM control and therefore should be run by a real-time processor. This repository utilizes the Raspberry Pi which is not a real-time processor. With that said, there should be limited issues utilizing the Pi to drive two RGB LED matrix panels. The performance issues should be limited to slight artifacts in the image including some "static" which can be seen below. You may be interested in exploring the use of level-shifters, real-time Linux kernels, or a [real-time HAT](http://www.adafruit.com/products/2345), but this is currently out of scope for this repository.**
+**Please note that these panels do not have built-in PWM control and therefore should be run by a real-time processor. This repository utilizes the Raspberry Pi which is not a real-time processor. With that said, there should be limited issues utilizing the Pi to drive two RGB LED matrix panels. The performance issues should be limited to slight artifacts in the image including some "static" which can be seen below. You may be interested in exploring the use of level-shifters, real-time Linux kernels, or a [real-time HAT](http://www.adafruit.com/products/2345), but these are currently untested.**
 
-[![Demo Video](http://img.youtube.com/vi/jUFrGG-O-hE/0.jpg)](http://www.youtube.com/watch?v=jUFrGG-O-hE)
+[![Demo Video](http://i.imgur.com/h00KsJ4.gifv)](http://www.youtube.com/watch?v=jUFrGG-O-hE)
 
 ## Requirements
 
@@ -33,7 +33,7 @@ In addition to a fresh install of [Raspbian](https://www.raspbian.org/), you wil
 
 * [PIL](http://www.pythonware.com/products/pil/)
 * [python gtfs-realtime-bindings](https://developers.google.com/transit/gtfs-realtime/code-samples?hl=en#python)
-* @hzeller's [RBG LED library](https://github.com/hzeller/rpi-rgb-led-matrix). Make sure to install this in the empty "rpi-rgb-led-matrix" directory in this repository.
+* @hzeller's [RGB LED library](https://github.com/hzeller/rpi-rgb-led-matrix). Make sure to install this in the empty "rpi-rgb-led-matrix" directory in this repository.
 
 ## Installation
 
@@ -50,20 +50,20 @@ In addition to a fresh install of [Raspbian](https://www.raspbian.org/), you wil
    ```
    * Safely shutdown the system with `sudo shutdown -h now` and then unplug the power. 
    * Insert the USB WiFi adapter and boot up the system. Enter the GUI via `startx` and [configure the WiFi](https://learn.adafruit.com/adafruits-raspberry-pi-lesson-3-network-setup/setting-up-wifi-with-raspbian).
-2. With both the rgb led matrices and Raspberry Pi disconnected from power, connect the two using the female to female wires OR solder. Either way, use following the [wiring diagram](https://github.com/hzeller/rpi-rgb-led-matrix#wiring-diagram), and make sure you are wiring to the input side of one of the led-rgb panels. To connect the two matrices together, simply use the IDC cable as pictured below.
+2. With both the RGB LED matrices and Raspberry Pi disconnected from power, connect the two using the female to female wires OR solder. Either way, use following the [wiring diagram](https://github.com/hzeller/rpi-rgb-led-matrix#wiring-diagram), and make sure you are wiring to the input side of one of the RGB LED panels. To connect the two matrices together, simply use the IDC cable as pictured below.
 
-[![Wiring Example](http://i.imgur.com/lcoUGVK.jpg)]
+![Wiring Example](http://i.imgur.com/lcoUGVK.jpg)
 
-3. In order to connect the panels to a power source, I had to cut one end of the AMP style power cords above the platic piece, strip the insulation off the last 1/2" of the wires, and connect them to screw terminal DC power adapter. Make sure you have the polarity of the wires correct. The red wires on my panels went to the positive (+) side of the screw terminals and the blue wires went to the negative (-) side. Make sure to handle the connection with care and I suggest wrapping it in electrical tape for safety and stability. 
+3. In order to connect the panels to a power source, I had to cut one end of the AMP style power cords above the plastic piece, strip the insulation off the last 1/2" of the wires, and connect them to screw terminal DC power adapter. Make sure you have the polarity of the wires correct. The red wires on my panels went to the positive (+) side of the screw terminals and the blue wires went to the negative (-) side. Make sure to handle the connection with care and I suggest wrapping it in electrical tape for safety and stability. 
 
-4. With the matrices correctly wired to the Pi and connected to power, boot the Pi back on. Login using your new credentials, and navigate to the GUI via `startx`. Make sure you are connected to the internet, and open up the command prompt. Create a directory named "subwaydisplay" via `mkdir subwaydisplay` and navigate to the directory via `cd subwaydisplay`. Clone this repository into the folder via `git clone https://github.com/chris-griffin/real-time.git`. If you run into an error, make sure that you have git installed via `sudo apt-get install git`. Navigate to the "rpi-rgb-led-matrix" directory via `cd rpi-rgb-led-matrix` and clone @hzeller's [RBG LED library](https://github.com/hzeller/rpi-rgb-led-matrix) via `git clone https://github.com/hzeller/rpi-rgb-led-matrix.git`. Run the `make` command to compile the files of this repository. 
+4. With the matrices correctly wired to the Pi and connected to power, boot the Pi back on. Login using your new credentials, and navigate to the GUI via `startx`. Make sure you are connected to the internet, and open up the command prompt. Create a directory named "subwaydisplay" via `mkdir subwaydisplay` and navigate to the directory via `cd subwaydisplay`. Clone this repository into the folder via `git clone https://github.com/chris-griffin/real-time.git`. If you run into an error, make sure that you have git installed via `sudo apt-get install git`. Navigate to the "rpi-rgb-led-matrix" directory via `cd rpi-rgb-led-matrix` and clone @hzeller's [RGB LED library](https://github.com/hzeller/rpi-rgb-led-matrix) via `git clone https://github.com/hzeller/rpi-rgb-led-matrix.git`. Run the `make` command to compile the files of this repository. 
 
 5. Install [PIL](http://www.pythonware.com/products/pil/) and [python gtfs-realtime-bindings](https://developers.google.com/transit/gtfs-realtime/code-samples?hl=en#python) via instructions from the provided links. 
 
-6. Obtain a developer key from the [MTA](http://web.mta.info/developers/developer-data-terms.html) and update the "sampleconfig.py" file with this information. Rename this file to "config.py". Run
+6. Obtain a developer key from the [MTA](http://web.mta.info/developers/developer-data-terms.html) and update the "sampleconfig.py" file with this information. Rename this file to "config.py".
 
 
-6. Navigate back to the "subwaydisplay" directory in the command prompt and run the "importdata.py" program with `python importdata.py`. You should see the RGB LED matrix panels come to life with the information for the uptown and downtown Wall Street 2/3 trains, and downtown 4/5 trains. You can adjust which trains are displayed by altering the config file with the appropriate station ids. 
+6. Navigate back to the "subwaydisplay" directory in the command prompt and run the "importdata.py" program with `python importdata.py`. You should see the RGB LED matrix panels come to life with the information for the uptown and downtown Wall Street 2/3 trains, and downtown 4/5 trains. You can adjust which trains are displayed by altering the config file with the appropriate station ids which can be found in the "StaticData" folder. 
 
 
 
