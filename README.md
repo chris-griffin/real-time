@@ -6,7 +6,8 @@ This repository allows you to run a countdown clock display for the NYC Subway f
 
 **Please note that these panels do not have built-in PWM control and therefore should be run by a real-time processor. This repository utilizes the Raspberry Pi which is not a real-time processor. With that said, there should be limited issues utilizing the Pi to drive two RGB LED matrix panels. The performance issues should be limited to slight artifacts in the image including some "static" which can be seen below. You may be interested in exploring the use of level-shifters, real-time Linux kernels, or a [real-time HAT](http://www.adafruit.com/products/2345), but these are currently untested.**
 
-[![Demo Video](http://i.imgur.com/h00KsJ4.gifv)](http://www.youtube.com/watch?v=jUFrGG-O-hE)
+You can see a demo of the completed display on [YouTube](https://www.youtube.com/watch?v=BXbsdpKbUQQ)
+[![Demo Video](https://img.youtube.com/vi/BXbsdpKbUQQ/0.jpg)](https://www.youtube.com/watch?v=BXbsdpKbUQQ)
 
 ## Requirements
 
